@@ -1,0 +1,25 @@
+<script type=“application/javascript”>
+  var updatePost = function (id) {
+    console.log(id);
+    var data = {
+      PostTitle: document.getElementById(“postTitle”).value,
+      PostBody: document.getElementById(“postBody”).value
+    }
+    fetch(“/posts/” + id, {
+      method: “PUT”, body: JSON.stringify(data), headers: {
+        ‘Content-Type’: ‘application/json’
+      }
+    }).then(result => window.location = “/posts”);
+  }
+</script>
+<div>
+    <label for=“postTitle”>Title: </label>
+    <input type=“text” id=“postTitle” name=“postTitle” required value={{PostTitle}}>
+</div>
+<div>
+    <label for=“postBody”>Body: </label>
+    <input type=“text” id=“postBody” name=“postBody” required value={{PostBody}}>
+</div>
+<div>
+    <button type=“submit” onClick=“updatePost({{PostId}})“>Submit</button>
+</div>
